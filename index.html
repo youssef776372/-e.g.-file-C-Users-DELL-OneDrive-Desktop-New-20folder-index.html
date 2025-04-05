@@ -30,7 +30,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mini Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Battle Shooter</title>
   <style>
     body { margin: 0; overflow: hidden; }
     canvas { display: block; }
@@ -38,87 +39,17 @@
 </head>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/three@0.156.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/PointerLockControls.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loader/GLTFLoader.js"></script>
+
   <script>
-    // Set up scene, camera, renderer
+    // Set up the scene, camera, and renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Load player model (you can replace with your own 3D model URL)
-    const loader = new THREE.GLTFLoader();
-    let player;
-    loader.load('https://example.com/player_model.glb', function(gltf) {
-      player = gltf.scene;
-      player.scale.set(0.1, 0.1, 0.1);
-      scene.add(player);
-    });
-
-    // Create a simple terrain (ground)
-    const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(500, 500),
-      new THREE.MeshBasicMaterial({ color: 0xaaaaaa, side: THREE.DoubleSide })
-    );
-    ground.rotation.x = -Math.PI / 2;
-    scene.add(ground);
-
-    // Set up player controls
-    let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
-    const speed = 0.1;
-
-    // Keyboard controls
-    document.addEventListener('keydown', (e) => {
-      if (e.code === 'KeyW') moveForward = true;
-      if (e.code === 'KeyS') moveBackward = true;
-      if (e.code === 'KeyA') moveLeft = true;
-      if (e.code === 'KeyD') moveRight = true;
-    });
-    document.addEventListener('keyup', (e) => {
-      if (e.code === 'KeyW') moveForward = false;
-      if (e.code === 'KeyS') moveBackward = false;
-      if (e.code === 'KeyA') moveLeft = false;
-      if (e.code === 'KeyD') moveRight = false;
-    });
-
-    // Shoot bullets (basic shooting functionality)
-    let bullets = [];
-    function shoot() {
-      const bullet = new THREE.Mesh(
-        new THREE.SphereGeometry(0.1, 8, 8),
-        new THREE.MeshBasicMaterial({ color: 0xffff00 })
-      );
-      bullet.position.copy(camera.position);
-      bullet.velocity = new THREE.Vector3();
-      camera.getWorldDirection(bullet.velocity);
-      bullet.velocity.multiplyScalar(1);
-      bullets.push(bullet);
-      scene.add(bullet);
-    }
-    window.addEventListener('click', shoot);
-
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
-
-      // Move player
-      if (player) {
-        if (moveForward) player.position.z -= speed;
-        if (moveBackward) player.position.z += speed;
-        if (moveLeft) player.position.x -= speed;
-        if (moveRight) player.position.x += speed;
-      }
-
-      // Update bullets (move forward)
-      bullets.forEach((bullet, i) => {
-        bullet.position.add(bullet.velocity);
-      });
-
-      // Render scene
-      renderer.render(scene, camera);
-    }
-    animate();
-  </script>
-</body>
-</html>
+    // Add a basic textured ground plane (for terrain)
+    const geometry = new THREE.PlaneGeometry(1000, 1000, 10, 10);
+    const material = new THREE.Mesh
