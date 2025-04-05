@@ -27,3 +27,127 @@
     </footer>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Shooter</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+    #instructions {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: white;
+      font-family: sans-serif;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions">Click to shoot. Use WASD + mouse to move</div>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.156.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.156.1/examples/js/controls/PointerLockControls.js"></script>
+  <script>
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Controls
+    const controls = new THREE.PointerLockControls(camera, document.body);
+    document.body.addEventListener('click', () => controls.lock());
+    scene.add(controls.getObject());
+
+    // Lighting
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(5, 10, 7.5);
+    scene.add(light);
+
+    // Ground
+    const ground = new THREE.Mesh(
+      new THREE.BoxGeometry(100, 1, 100),
+      new THREE.MeshStandardMaterial({ color: 0x444444 })
+    );
+    ground.position.y = -1;
+    scene.add(ground);
+
+    // Enemies
+    const enemies = [];
+    for (let i = 0; i < 5; i++) {
+      const enemy = new THREE.Mesh(
+        new THREE.BoxGeometry(1, 2, 1),
+        new THREE.MeshStandardMaterial({ color: 0xff0000 })
+      );
+      enemy.position.set(Math.random() * 20 - 10, 1, -Math.random() * 20);
+      enemies.push(enemy);
+      scene.add(enemy);
+    }
+
+    // Bullets
+    const bullets = [];
+    function shoot() {
+      const bullet = new THREE.Mesh(
+        new THREE.SphereGeometry(0.1, 8, 8),
+        new THREE.MeshBasicMaterial({ color: 0xffff00 })
+      );
+      bullet.position.copy(camera.position);
+      bullet.velocity = new THREE.Vector3();
+      controls.getDirection(bullet.velocity);
+      bullet.velocity.multiplyScalar(1);
+      bullets.push(bullet);
+      scene.add(bullet);
+    }
+
+    window.addEventListener('click', shoot);
+
+    // Movement
+    const move = { forward: false, backward: false, left: false, right: false };
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'KeyW') move.forward = true;
+      if (e.code === 'KeyS') move.backward = true;
+      if (e.code === 'KeyA') move.left = true;
+      if (e.code === 'KeyD') move.right = true;
+    });
+    document.addEventListener('keyup', (e) => {
+      if (e.code === 'KeyW') move.forward = false;
+      if (e.code === 'KeyS') move.backward = false;
+      if (e.code === 'KeyA') move.left = false;
+      if (e.code === 'KeyD') move.right = false;
+    });
+
+    // Game loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Player movement
+      const speed = 0.1;
+      if (move.forward) controls.moveForward(speed);
+      if (move.backward) controls.moveForward(-speed);
+      if (move.left) controls.moveRight(-speed);
+      if (move.right) controls.moveRight(speed);
+
+      // Bullet movement
+      bullets.forEach((bullet, i) => {
+        bullet.position.add(bullet.velocity);
+        // Check collision with enemies
+        enemies.forEach((enemy, j) => {
+          if (bullet.position.distanceTo(enemy.position) < 1) {
+            scene.remove(enemy);
+            scene.remove(bullet);
+            enemies.splice(j, 1);
+            bullets.splice(i, 1);
+          }
+        });
+      });
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
