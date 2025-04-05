@@ -26,27 +26,7 @@
         <p>&copy; 2025 Youssef's Story Sharing | All Rights Reserved</p>
     </footer>
 </body>
-</html>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>3D Shooter</title>
-  <style>
-    body { margin: 0; overflow: hidden; }
-    canvas { display: block; }
-    #instructions {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      color: white;
-      font-family: sans-serif;
-      z-index: 1;
-    }
-  </style>
-</head>
-<body>
-  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -136,3 +116,23 @@
   </script>
 </body>
 </html>
+function shoot() {
+  console.log("Shoot function triggered!");
+  const bullet = new THREE.Mesh(
+    new THREE.SphereGeometry(0.1, 8, 8),
+    new THREE.MeshBasicMaterial({ color: 0xffff00 })
+  );
+  bullet.position.copy(camera.position);
+  bullet.velocity = new THREE.Vector3();
+  camera.getWorldDirection(bullet.velocity);
+  bullet.velocity.multiplyScalar(1);
+  bullets.push(bullet);
+  scene.add(bullet);
+}
+document.addEventListener('keydown', (e) => {
+  console.log('Key pressed:', e.code);  // Log the key that was pressed
+  if (e.code === 'KeyW') moveForward = true;
+  if (e.code === 'KeyS') moveBackward = true;
+  if (e.code === 'KeyA') moveLeft = true;
+  if (e.code === 'KeyD') moveRight = true;
+});
