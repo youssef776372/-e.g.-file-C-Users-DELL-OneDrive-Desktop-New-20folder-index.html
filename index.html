@@ -31,7 +31,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Basic Cube Test</title>
+  <title>Three.js Cube Test</title>
   <style>
     body { margin: 0; overflow: hidden; }
     canvas { display: block; }
@@ -41,23 +41,30 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.156.1/build/three.min.js"></script>
 
   <script>
-    // Set up the scene
+    // Check if Three.js is loaded
+    if (typeof THREE === 'undefined') {
+      console.error('Three.js is not loaded.');
+    } else {
+      console.log('Three.js is loaded.');
+    }
+
+    // Scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Add a cube to the scene
+    // Create a cube
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
-    // Position the camera so that the cube is visible
+    // Position the camera
     camera.position.z = 5;
 
-    // Render the scene
+    // Animation loop
     function animate() {
       requestAnimationFrame(animate);
 
@@ -72,10 +79,3 @@
   </script>
 </body>
 </html>
-<script>
-  if (typeof THREE === 'undefined') {
-    console.error('Three.js is not loaded.');
-  } else {
-    console.log('Three.js is loaded.');
-  }
-</script>
