@@ -50,81 +50,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>3D Shooter</title>
+  <title>3D Game Test</title>
   <style>
     body { margin: 0; overflow: hidden; }
     canvas { display: block; }
-    #instructions {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      color: white;
-      font-family: sans-serif;
-      z-index: 1;
-    }
   </style>
 </head>
 <body>
-  <div id="instructions">Click to shoot. Use WASD + mouse to move</div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.156.1/build/three.min.js"></script>
   <script>
+    // Scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Controls (WASD movement)
-    const keys = { forward: false, backward: false, left: false, right: false };
-    const speed = 0.1;
+    // Cube setup to test rendering
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 
-    // Ground
-    const ground = new THREE.Mesh(
-      new THREE.BoxGeometry(100, 1, 100),
-      new THREE.MeshStandardMaterial({ color: 0x444444 })
-    );
-    ground.position.y = -1;
-    scene.add(ground);
+    // Move camera back to see the cube
+    camera.position.z = 5;
 
-    // Enemy
-    const enemies = [];
-    for (let i = 0; i < 5; i++) {
-      const enemy = new THREE.Mesh(
-        new THREE.BoxGeometry(1, 2, 1),
-        new THREE.MeshStandardMaterial({ color: 0xff0000 })
-      );
-      enemy.position.set(Math.random() * 20 - 10, 1, -Math.random() * 20);
-      enemies.push(enemy);
-      scene.add(enemy);
+    // Animation function for rendering the scene
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Rotate the cube to see movement
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      // Render the scene with the camera
+      renderer.render(scene, camera);
     }
 
-    // Bullet
-    const bullets = [];
-    function shoot() {
-      const bullet = new THREE.Mesh(
-        new THREE.SphereGeometry(0.1, 8, 8),
-        new THREE.MeshBasicMaterial({ color: 0xffff00 })
-      );
-      bullet.position.copy(camera.position);
-      bullet.velocity = new THREE.Vector3();
-      camera.getWorldDirection(bullet.velocity);
-      bullet.velocity.multiplyScalar(1);
-      bullets.push(bullet);
-      scene.add(bullet);
-    }
-    window.addEventListener('click', shoot);
-
-    // Key movement
-    document.addEventListener('keydown', (e) => {
-      if (e.code === 'KeyW') keys.forward = true;
-      if (e.code === 'KeyS') keys.backward = true;
-      if (e.code === 'KeyA') keys.left = true;
-      if (e.code === 'KeyD') keys.right = true;
-    });
-    document.addEventListener('keyup', (e) => {
-      if (e.code === 'KeyW') keys.forward = false;
-      if (e.code === 'KeyS') keys.backward = false;
-      if (e.code === 'KeyA') keys.left = false;
-      if (e.code
-
-   
+    animate();
+  </script>
+</body>
+</html>
