@@ -151,3 +151,32 @@
   </script>
 </body>
 </html>
+function animate() {
+  requestAnimationFrame(animate);
+
+  // Debug message to check if the game loop is running
+  console.log("Game is running");
+
+  // Player movement
+  const speed = 0.1;
+  if (move.forward) controls.moveForward(speed);
+  if (move.backward) controls.moveForward(-speed);
+  if (move.left) controls.moveRight(-speed);
+  if (move.right) controls.moveRight(speed);
+
+  // Bullet movement
+  bullets.forEach((bullet, i) => {
+    bullet.position.add(bullet.velocity);
+    // Check collision with enemies
+    enemies.forEach((enemy, j) => {
+      if (bullet.position.distanceTo(enemy.position) < 1) {
+        scene.remove(enemy);
+        scene.remove(bullet);
+        enemies.splice(j, 1);
+        bullets.splice(i, 1);
+      }
+    });
+  });
+
+  renderer.render(scene, camera);
+}
