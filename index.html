@@ -50,7 +50,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>3D Game Test</title>
+  <title>3D Shooter</title>
   <style>
     body { margin: 0; overflow: hidden; }
     canvas { display: block; }
@@ -66,27 +66,72 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    // Cube setup to test rendering
+    // Cube setup (just to test)
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
 
-    // Move camera back to see the cube
-    camera.position.z = 5;
+    // Ground setup
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(500, 500),
+      new THREE.MeshBasicMaterial({ color: 0xaaaaaa, side: THREE.DoubleSide })
+    );
+    ground.rotation.x = Math.PI / 2;
+    scene.add(ground);
 
-    // Animation function for rendering the scene
+    // Player controls
+    let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
+    const speed = 0.1;
+
+    // Bullet setup
+    const bullets = [];
+    function shoot() {
+      const bullet = new THREE.Mesh(
+        new THREE.SphereGeometry(0.1, 8, 8),
+        new THREE.MeshBasicMaterial({ color: 0xffff00 })
+      );
+      bullet.position.copy(camera.position);
+      bullet.velocity = new THREE.Vector3();
+      camera.getWorldDirection(bullet.velocity);
+      bullet.velocity.multiplyScalar(1);
+      bullets.push(bullet);
+      scene.add(bullet);
+    }
+    window.addEventListener('click', shoot);
+
+    // Key movement
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'KeyW') moveForward = true;
+      if (e.code === 'KeyS') moveBackward = true;
+      if (e.code === 'KeyA') moveLeft = true;
+      if (e.code === 'KeyD') moveRight = true;
+    });
+    document.addEventListener('keyup', (e) => {
+      if (e.code === 'KeyW') moveForward = false;
+      if (e.code === 'KeyS') moveBackward = false;
+      if (e.code === 'KeyA') moveLeft = false;
+      if (e.code === 'KeyD') moveRight = false;
+    });
+
+    // Animation loop
     function animate() {
       requestAnimationFrame(animate);
 
-      // Rotate the cube to see movement
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // Camera movement
+      if (moveForward) camera.position.z -= speed;
+      if (moveBackward) camera.position.z += speed;
+      if (moveLeft) camera.position.x -= speed;
+      if (moveRight) camera.position.x += speed;
 
-      // Render the scene with the camera
+      // Bullet movement
+      bullets.forEach((bullet, i) => {
+        bullet.position.add(bullet.velocity);
+      });
+
+      // Render scene
       renderer.render(scene, camera);
     }
-
     animate();
   </script>
 </body>
