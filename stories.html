@@ -7,6 +7,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stories - Youssef's Story Sharing</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .modal-content {
+            background-color: #222;
+            margin: 5% auto;
+            padding: 2rem;
+            border: 1px solid #444;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            text-align: left;
+            color: #eee;
+            line-height: 1.6;
+        }
+
+        .modal-content h2 {
+            color: #6ec1e4;
+            text-align: center;
+        }
+
+        .highlight {
+            color: #ffd27f;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,6 +65,7 @@
             <a href="stories.html">Stories</a>
         </nav>
     </header>
+
     <section>
         <h2>Latest Stories</h2>
         <ul>
@@ -29,11 +78,54 @@
             <li><a href="the-last-starfall.html">The Last Starfall</a></li>
             <li><a href="the-labyrinth-of-lost-souls.html">The Labyrinth of Lost Souls</a></li>
             <li><button onclick="openModal()">Me and the Bicycle</button></li>
-</ul>
-        </ul>        
+        </ul>      
     </section>
+
+    <!-- Modal for "Me and the Bicycle" -->
+    <div id="storyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Me and the Bicycle</h2>
+            <p>I still remember the first time I saw it. It was old, a little rusty, and the paint was chipped in places—but to me, it was beautiful. 
+            A <span class="highlight">bicycle</span> that felt like it had a story of its own.</p>
+
+            <p>I didn't have much. But every time I looked at that bike, I felt a dream growing quietly in my chest. I imagined riding down the hill near my home, the wind 
+            brushing against my face, the world flying by as if nothing could touch me. I wanted that more than anything.</p>
+
+            <p>It took weeks of saving, skipping snacks, and doing small chores for neighbors. Finally, the day came. I handed over the coins, one by one, to the man who 
+            had kept it for me. He smiled, maybe because he knew what it meant.</p>
+
+            <p>The first ride was wobbly. I fell more than once. My hands were scratched, my knees bruised—but my heart? It was full. That bike became more than just a way 
+            to get around. It became my escape, my freedom, my little piece of happiness in a noisy world.</p>
+
+            <p>Even now, when I pass by the place where I used to ride, I remember that feeling. The simple joy of holding onto something I worked for. The quiet lesson 
+            that sometimes, the smallest things—like an old bicycle—can carry our biggest dreams.</p>
+
+            <p class="highlight">It wasn’t just a bike. It was a memory, a friend, and a symbol of who I was becoming.</p>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2025 Youssef's Story Sharing | All Rights Reserved</p>
     </footer>
+
+    <!-- JavaScript for Modal -->
+    <script>
+        function openModal() {
+            document.getElementById("storyModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("storyModal").style.display = "none";
+        }
+
+        // Optional: close the modal if user clicks outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("storyModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
