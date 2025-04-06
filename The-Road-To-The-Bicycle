@@ -1,60 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Road To The Bicycle</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      background-color: #111;
-      color: #eee;
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.6;
-    }
-    h1 {
-      text-align: center;
-      color: #6ec1e4;
-    }
-    .highlight {
-      color: #ffd27f;
-    }
-    p {
-      margin-bottom: 1.2rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me and the Bicycle</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Me and the Bicycle</h1>
-  <p>
-    I still remember the first time I saw it. It was old, a little rusty, and the paint was chipped in places—but to me, it was beautiful. 
-    A <span class="highlight">bicycle</span> that felt like it had a story of its own.
-  </p>
+    <header>
+        <h1>Me and the Bicycle</h1>
+        <nav>
+            <a href="index.html">Home</a> | 
+            <a href="about.html">About</a> | 
+            <a href="stories.html">Stories</a>
+        </nav>
+    </header>
 
-  <p>
-    I didn't have much. But every time I looked at that bike, I felt a dream growing quietly in my chest. I imagined riding down the hill near my home, the wind 
-    brushing against my face, the world flying by as if nothing could touch me. I wanted that more than anything.
-  </p>
+    <section>
+        <h2>Story Content</h2>
+        <p>I still remember the first time I saw it. It was old, a little rusty, and the paint was chipped in places—but to me, it was beautiful. A bicycle that felt like it had a story of its own.</p>
+        
+        <p>I had always dreamt of riding my own bike, but we couldn't afford a brand-new one. So, when my uncle brought this old bicycle to me one summer, I couldn't believe my eyes. It was mine, even though it looked a little beat up.</p>
+        
+        <p>The first ride was a bit shaky. I wobbled down the street, my heart racing with excitement. But soon enough, I found my balance. That bicycle became more than just a mode of transportation—it was my companion, my escape. It took me to places in my mind, where I could be free, away from all the worries.</p>
+        
+        <p>Over time, we fixed it up together—tightening the bolts, putting on new tires, and polishing the frame. Each repair made it feel more like a partner. It wasn’t just a bicycle; it was a symbol of persistence, growth, and memories.</p>
+        
+        <p>Looking back, it wasn't about the bike itself, but the lessons it taught me. Patience. Resilience. The joy of simple things. Every time I ride, I remember how far we’ve come—both me and the bicycle.</p>
+    </section>
 
-  <p>
-    It took weeks of saving, skipping snacks, and doing small chores for neighbors. Finally, the day came. I handed over the coins, one by one, to the man who 
-    had kept it for me. He smiled, maybe because he knew what it meant.
-  </p>
-
-  <p>
-    The first ride was wobbly. I fell more than once. My hands were scratched, my knees bruised—but my heart? It was full. That bike became more than just a way 
-    to get around. It became my escape, my freedom, my little piece of happiness in a noisy world.
-  </p>
-
-  <p>
-    Even now, when I pass by the place where I used to ride, I remember that feeling. The simple joy of holding onto something I worked for. The quiet lesson 
-    that sometimes, the smallest things—like an old bicycle—can carry our biggest dreams.
-  </p>
-
-  <p class="highlight">
-    It wasn’t just a bike. It was a memory, a friend, and a symbol of who I was becoming.
-  </p>
+    <footer>
+        <p>&copy; 2025 Youssef's Story Sharing | All Rights Reserved</p>
+    </footer>
 </body>
 </html>
