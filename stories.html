@@ -1,198 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stories - Youssef's Story Sharing</title>
-  <style>
-    /* General Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-
-    .modal-content {
-      background-color: #333;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 600px;
-      border-radius: 16px;
-      color: white;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: white;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 10px 0;
-      cursor: pointer;
-      background-color: #6ec1e4;
-      color: white;
-      border: none;
-      border-radius: 8px;
-    }
-
-    button:hover {
-      background-color: #4e9fb7;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #6ec1e4;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      text-align: center;
-    }
-
-    li {
-      margin: 10px;
-    }
-  </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536247380757466"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories - Youssef's Story Sharing</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <header>
-    <h1>Our Stories</h1>
-    <nav>
-      <a href="index.html">Home</a> | 
-      <a href="about.html">About</a> | 
-      <a href="stories.html">Stories</a>
-    </nav>
-  </header>
-
-  <section>
-    <h2>Latest Stories</h2>
-    <ul>
-      <!-- Story List with Modals -->
-      <li><button onclick="openModal('story1')">The Last Dragon Rider</button></li>
-      <li><button onclick="openModal('story2')">The Time Traveler's Secret</button></li>
-      <li><button onclick="openModal('story3')">The Forgotten City</button></li>
-      <li><button onclick="openModal('story4')">The Ghost in the Machine</button></li>
-      <li><button onclick="openModal('story5')">The Shattered Crown</button></li>
-      <li><button onclick="openModal('story6')">The Whispering Woods</button></li>
-      <li><button onclick="openModal('story7')">The Last Starfall</button></li>
-      <li><button onclick="openModal('story8')">The Labyrinth of Lost Souls</button></li>
-      <li><button onclick="openModal('story9')">Me and the Bicycle</button></li>
-    </ul>  
-  </section>
-
-  <!-- Modals for each story -->
-  <div id="story1" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story1')">&times;</span>
-      <h3>The Last Dragon Rider</h3>
-      <p>Once, dragons roamed the skies, their wings painting the clouds. But one rider still remains—a legend among us, searching for the lost dragons.</p>
-    </div>
-  </div>
-
-  <div id="story2" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story2')">&times;</span>
-      <h3>The Time Traveler's Secret</h3>
-      <p>A young boy discovers a secret time machine hidden in his grandfather's attic. But with great power comes great responsibility.</p>
-    </div>
-  </div>
-
-  <div id="story3" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story3')">&times;</span>
-      <h3>The Forgotten City</h3>
-      <p>Long lost beneath the desert sands, an ancient city reawakens, and its mysteries call to those brave enough to uncover them.</p>
-    </div>
-  </div>
-
-  <div id="story4" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story4')">&times;</span>
-      <h3>The Ghost in the Machine</h3>
-      <p>A young programmer begins to notice strange things happening inside the software she’s been coding. Is it a bug—or something else entirely?</p>
-    </div>
-  </div>
-
-  <div id="story5" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story5')">&times;</span>
-      <h3>The Shattered Crown</h3>
-      <p>In a kingdom torn apart by war, the last heir to the throne embarks on a journey to reclaim a crown that holds the power to unite the land.</p>
-    </div>
-  </div>
-
-  <div id="story6" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story6')">&times;</span>
-      <h3>The Whispering Woods</h3>
-      <p>Deep in the forest, there are rumors of voices in the wind. Are they spirits? Or something darker waiting to be uncovered?</p>
-    </div>
-  </div>
-
-  <div id="story7" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story7')">&times;</span>
-      <h3>The Last Starfall</h3>
-      <p>The stars begin to fall, signaling the end of an era. One young girl must decide whether to leave her home behind in search of the truth.</p>
-    </div>
-  </div>
-
-  <div id="story8" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story8')">&times;</span>
-      <h3>The Labyrinth of Lost Souls</h3>
-      <p>Trapped in an endless maze of shadow, a group of explorers must find their way out before they too are lost forever.</p>
-    </div>
-  </div>
-
-  <div id="story9" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('story9')">&times;</span>
-      <h3>Me and the Bicycle</h3>
-      <p>I still remember the first time I saw it. It was old, a little rusty, and the paint was chipped in places—but to me, it was beautiful. A bicycle that felt like it had a story of its own.</p>
-    </div>
-  </div>
-
-  <!-- JavaScript for Modal functionality -->
-  <script>
-    function openModal(storyId) {
-      document.getElementById(storyId).style.display = "block";
-    }
-
-    function closeModal(storyId) {
-      document.getElementById(storyId).style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      var modals = document.querySelectorAll('.modal');
-      modals.forEach(function(modal) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    }
-  </script>
-
+    <header>
+        <h1>Our Stories</h1>
+        <nav>
+            <a href="index.html">Home</a> | 
+            <a href="about.html">About</a> | 
+            <a href="stories.html">Stories</a>
+        </nav>
+    </header>
+    <section>
+        <h2>Latest Stories</h2>
+        <ul>
+            <li><a href="the-last-dragon-rider.html">The Last Dragon Rider</a></li>
+            <li><a href="the-time-travelers-secret.html">The Time Traveler's Secret</a></li>
+            <li><a href="the-forgotten-city.html">The Forgotten City</a></li>
+            <li><a href="the-ghost-in-the-machine.html">The Ghost in the Machine</a></li>
+            <li><a href="the-shattered-crown.html">The Shattered Crown</a></li>
+            <li><a href="the-whispering-woods.html">The Whispering Woods</a></li>
+            <li><a href="the-last-starfall.html">The Last Starfall</a></li>
+            <li><a href="the-labyrinth-of-lost-souls.html">The Labyrinth of Lost Souls</a></li>
+            <li><a href="me-and-the-bicycle.html">Me and the Bicycle</a></li>
+            <li><a href="the-journey-beyond-the-mist.html">The Journey Beyond the Mist</a></li>
+            <li><a href="the-secret-of-the-frozen-lake.html">The Secret of the Frozen Lake</a></li>
+            <li><a href="the-lost-treasure-of-echo-island.html">The Lost Treasure of Echo Island</a></li>
+            <li><a href="the-night-the-sky-fell.html">The Night the Sky Fell</a></li>
+        </ul>        
+    </section>
+    <footer>
+        <p>&copy; 2025 Youssef's Story Sharing | All Rights Reserved</p>
+    </footer>
 </body>
 </html>
